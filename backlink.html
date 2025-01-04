@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Backlink Checker</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .backlink-checker {
+            max-width: 600px;
+            margin: 0 auto;
+            background: #fff;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        input[type="text"], button {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+        }
+
+        button {
+            background-color: #054ADA;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #003d9a;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        ul li {
+            margin: 10px 0;
+        }
+
+        ul li a {
+            text-decoration: none;
+            color: #054ADA;
+        }
+
+        ul li a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Backlink Checker</h1>
+
+    <div class="backlink-checker">
+        <input type="text" id="domain" placeholder="Enter domain (e.g., example.com)">
+        <button onclick="checkBacklinks()">Check Backlinks</button>
+
+        <div id="result" style="margin-top: 20px;">
+            <h2>Check backlinks using free tools:</h2>
+            <ul id="backlinkLinks"></ul>
+        </div>
+    </div>
+
+    <script>
+        function checkBacklinks() {
+            const domain = document.getElementById('domain').value;
+            const backlinkLinks = document.getElementById('backlinkLinks');
+            backlinkLinks.innerHTML = '';
+
+            const services = [
+                { name: 'Ahrefs Backlink Checker', url: `https://ahrefs.com/backlink-checker/?input=${domain}&mode=exact` },
+                { name: 'Ubersuggest Backlink Checker', url: `https://app.neilpatel.com/en/seo_analyzer/backlinks?domain=${domain}&lang=en&locId=2356&mode=domain` },
+                { name: 'Moz Link Explorer', url: `https://moz.com/link-explorer?site=${domain}` }
+            ];
+
+            services.forEach(service => {
+                const listItem = document.createElement('li');
+                const link = document.createElement('a');
+                link.href = service.url;
+                link.textContent = service.name;
+                link.target = '_blank';
+                listItem.appendChild(link);
+                backlinkLinks.appendChild(listItem);
+            });
+        }
+    </script>
+
+</body>
+</html>
